@@ -1,71 +1,75 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Flower } from 'lucide-react';
-import Experience from '../About/Experience';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const HeroAbout = () => {
-  const imageUrl = "https://blossomsflorals.com/cdn/shop/files/IMG_3933_copy.heic?v=1768501868&width=1920";
+  const imageUrl =
+    "https://blossomsflorals.com/cdn/shop/files/IMG_3933_copy.heic?v=1768501868&width=1920";
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-in-out',
+    });
+  }, []);
 
   return (
-    <section className="relative w-full h-[80vh] md:h-screen flex items-center justify-center overflow-hidden bg-gray-100">
-      
-      {/* --- Background Image with Overlay --- */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: `url(${imageUrl})`,
-          // HEIC support fallback background color
-          backgroundColor: '#2a2a2a' 
-        }}
-      >
-        {/* Dark subtle overlay for text readability */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
-      </div>
+    <section
+      className="relative flex items-center justify-center bg-cover bg-center bg-no-repeat overflow-hidden"
+      style={{
+        backgroundImage: `url(${imageUrl})`,
+        minHeight: '85vh',
+      }}
+    >
+      {/* Gradient Overlay (same as first) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
 
-      {/* --- Content Section --- */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
+      {/* Content */}
+      <div className="relative z-10 text-center px-6 py-16 md:px-12 lg:px-24 max-w-5xl mx-auto flex flex-col items-center">
         
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-6"
+        {/* Small Badge */}
+        <div
+          data-aos="fade-up"
+          className="flex items-center gap-2 mb-6"
         >
-          {/* Small Badge */}
-          <div className="flex justify-center items-center gap-2 mb-4">
-            <div className="h-px w-8 bg-pink-400"></div>
-            <span className="text-pink-400 uppercase tracking-[0.3em] text-xs font-bold">
-              Crafting Emotions
-            </span>
-            <div className="h-px w-8 bg-pink-400"></div>
-          </div>
+          <div className="h-px w-10 bg-pink-400"></div>
+          <span className="text-pink-400 uppercase tracking-[0.3em] text-xs font-bold">
+            About Us
+          </span>
+          <div className="h-px w-10 bg-pink-400"></div>
+        </div>
 
-          {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-serif font-bold leading-tight">
-            Flowers That Tell <br /> 
-            <span className="italic font-light text-pink-100">Your Story</span>
-          </h1>
+        {/* Heading */}
+        <h1
+          data-aos="fade-up"
+          data-aos-delay="200"
+          className="text-5xl md:text-7xl  font-serif font-semibold text-white leading-tight mb-4"
+        >
+          Flora<span className="text-pink-400"> Haven</span>
+        </h1>
 
-          {/* About Text */}
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-200 leading-relaxed font-light">
-             Flora Bloom is more than just a flower shop. We are curators of beauty, 
-            bringing you the freshest blooms from across the globe to Lahore. Every 
-            arrangement is handcrafted with love, precision, and a passion for 
-            unforgettable moments.
-          </p>
+        {/* Description */}
+        <p
+          data-aos="fade-up"
+          data-aos-delay="300"
+          className="text-lg md:text-xl text-pink-100 mb-10 max-w-3xl leading-relaxed"
+        >
+          We don’t just sell flowers — we design emotions, craft memories,
+          and deliver elegance in every bouquet. From everyday beauty to
+          life’s biggest celebrations, Flora Bloom is your story in bloom.
+        </p>
 
-         
-        </motion.div>
+        {/* Button (added like first) */}
+        <button
+          data-aos="zoom-in"
+          data-aos-delay="500"
+          className="bg-pink-600 text-white px-8 py-3 rounded-full font-semibold
+          hover:bg-gray-900 cursor-pointer"
+        >
+          Explore More
+        </button>
       </div>
-
-      {/* Scroll Down Indicator */}
-      <motion.div 
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/60 hidden md:block"
-      >
-        <div className="w-px h-16 bg-linear-to-b from-white to-transparent"></div>
-      </motion.div>
     </section>
   );
 };

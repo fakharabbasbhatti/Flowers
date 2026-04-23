@@ -1,7 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Flickity from 'flickity';
 import 'flickity/dist/flickity.min.css';
-import { Heart, Eye, ShoppingCart } from 'lucide-react';
+import {
+  Heart,
+  Eye,
+  ShoppingCart,
+  ChevronLeft,
+  ChevronRight,
+  X
+} from 'lucide-react';
 import { useCart } from '../../Context/CartContext';
 import { toast } from 'react-toastify';
 
@@ -21,7 +28,10 @@ import flowers12 from '../../assets/flowers12.webp';
 
 const ProductCarousel = () => {
   const flickityRef = useRef(null);
+  const flktyInstance = useRef(null);
+
   const { addToCart } = useCart();
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const images = [
     { main: flowers1, hover: flowers12 },
@@ -54,10 +64,10 @@ const ProductCarousel = () => {
 
   useEffect(() => {
     if (flickityRef.current) {
-      new Flickity(flickityRef.current, {
+      flktyInstance.current = new Flickity(flickityRef.current, {
         cellAlign: 'left',
         contain: true,
-        pageDots: true,
+        pageDots: false,
         prevNextButtons: false,
         wrapAround: true,
         autoPlay: 2000,
@@ -66,20 +76,57 @@ const ProductCarousel = () => {
     }
   }, []);
 
+  const handlePrev = () => flktyInstance.current?.previous();
+  const handleNext = () => flktyInstance.current?.next();
+
   const handleAddToCart = (product) => {
     addToCart(product);
     toast.success(`${product.title} added to cart!`);
   };
 
+  const handleViewProduct = (product) => {
+    setSelectedProduct(product);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setSelectedProduct(null);
+    document.body.style.overflow = "auto";
+  };
+
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="py-16 bg-gray-50 relative">
 
-        <h2 className="text-3xl font-serif font-bold text-center mb-10 text-gray-800">
-          New Arrivals
-        </h2>
+      <div className="max-w-7xl mx-auto px-4 relative">
 
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-800">
+            New Arrivals
+          </h2>
+
+          {/* ✅ YOUR REQUESTED LINE */}
+          <div className="w-24 h-1 bg-pink-500 mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        {/* Arrows */}
+        <button
+          onClick={handlePrev}
+          className="absolute left-0 md:-left-6 top-1/2 -translate-y-1/2 bg-white shadow-md p-3 rounded-full hover:bg-pink-500 hover:text-white transition z-10"
+        >
+          <ChevronLeft />
+        </button>
+
+        <button
+          onClick={handleNext}
+          className="absolute right-0 md:-right-6 top-1/2 -translate-y-1/2 bg-white shadow-md p-3 rounded-full hover:bg-pink-500 hover:text-white transition z-10"
+        >
+          <ChevronRight />
+        </button>
+
+        {/* Carousel */}
         <div ref={flickityRef} className="carousel">
+
           {products.map((product) => (
             <div key={product.id} className="carousel-cell w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-3">
 
@@ -95,30 +142,31 @@ const ProductCarousel = () => {
 
                   <img
                     src={product.mainImg}
-                    alt={product.title}
-                    className="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0"
+                    className="w-full h-full object-cover group-hover:opacity-0 transition"
                   />
 
                   <img
                     src={product.hoverImg}
-                    alt={product.title}
-                    className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-500"
+                    className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition"
                   />
 
                   {/* Icons */}
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-3 opacity-0 group-hover:opacity-100 transition">
 
-                    <button className="p-2 bg-white rounded-full text-gray-600 hover:bg-[#F6339A] hover:text-white transition shadow">
+                    <button className="p-2 bg-white rounded-full hover:bg-pink-500 hover:text-white">
                       <Heart size={18} />
                     </button>
 
-                    <button className="p-2 bg-white rounded-full text-gray-600 hover:bg-[#F6339A] hover:text-white transition shadow">
+                    <button
+                      onClick={() => handleViewProduct(product)}
+                      className="p-2 bg-white rounded-full hover:bg-pink-500 hover:text-white"
+                    >
                       <Eye size={18} />
                     </button>
 
                     <button
                       onClick={() => handleAddToCart(product)}
-                      className="p-2 bg-white rounded-full text-gray-600 hover:bg-[#F6339A] hover:text-white transition shadow"
+                      className="p-2 bg-white rounded-full hover:bg-pink-500 hover:text-white"
                     >
                       <ShoppingCart size={18} />
                     </button>
@@ -128,7 +176,7 @@ const ProductCarousel = () => {
 
                 {/* Info */}
                 <div className="p-4 text-center">
-                  <h3 className="font-medium text-gray-800 hover:text-pink-500 cursor-pointer">
+                  <h3 className="font-medium text-gray-800 hover:text-pink-500">
                     {product.title}
                   </h3>
                   <p className="text-pink-600 font-bold mt-1">
@@ -139,14 +187,46 @@ const ProductCarousel = () => {
               </div>
             </div>
           ))}
+
         </div>
+
       </div>
 
-      <style jsx global>{`
-        .flickity-page-dots .dot {
-          background: #ec4899;
-        }
-      `}</style>
+      {/* MODAL */}
+      {selectedProduct && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+
+          <div className="bg-white w-[90%] max-w-md rounded-xl p-6 relative shadow-xl">
+
+            {/* Close */}
+            <button
+              onClick={closeModal}
+              className="absolute top-1 right-2 text-gray-600 hover:text-red-500"
+            >
+              <X />
+            </button>
+
+            <img
+              src={selectedProduct.mainImg}
+              className="w-full h-60 object-cover rounded-lg mb-4"
+            />
+
+            <h2 className="text-xl font-bold text-gray-800">
+              {selectedProduct.title}
+            </h2>
+
+            <p className="text-pink-600 font-bold mt-2">
+              {selectedProduct.price}
+            </p>
+
+            <p className="text-gray-500 text-sm mt-3">
+              Premium floral arrangement crafted with love and elegance 🌸
+            </p>
+
+          </div>
+        </div>
+      )}
+
     </section>
   );
 };

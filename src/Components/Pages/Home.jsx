@@ -1,50 +1,68 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+import { Link } from 'react-router-dom';
 import Bouquets from '../../assets/Bouquets.webp';
 import Flowers from '../Home/Flowers';
 import ProductCarousel from '../Home/Product';
-import Story from '../Home/Story';
 import Testimonials from '../Home/Reviews';
-import Bloom from '../Home/Bloom';
-import { Link } from 'react-router-dom'; // ✅ FIXED IMPORT
 
 const heroImage = Bouquets;
 
 const HomePage = () => {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-in-out',
+    });
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-gray-50 flex flex-col font-sans overflow-hidden">
 
       {/* Hero Section */}
       <div
-        className="relative grow flex items-center justify-center bg-cover bg-center bg-no-repeat bg-gray-900"
+        className="relative flex items-center justify-center bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: heroImage ? `url(${heroImage})` : 'none',
-          minHeight: '80vh'
+          backgroundImage: `url(${heroImage})`,
+          minHeight: '85vh'
         }}
       >
-        {/* Overlay */}
-        {heroImage && (
-          <div className="absolute inset-0 bg-black/40"></div>
-        )}
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
 
         {/* Hero Content */}
         <div className="relative z-10 text-center px-6 py-16 md:px-12 lg:px-24 max-w-5xl mx-auto flex flex-col items-center">
 
-          {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-extrabold text-white tracking-tight leading-tight mb-4 drop-shadow-2xl">
-            Flora<span className="text-pink-400"> Bloom</span>
+          {/* Heading */}
+          <h1
+            data-aos="fade-up"
+            className="text-5xl md:text-7xl font-serif font-semibold text-white leading-tight mb-4"
+          >
+            Flora<span className="text-pink-400"> Haven</span>
           </h1>
 
-          {/* Subheading */}
-          <p className="text-xl md:text-2xl lg:text-3xl font-light text-pink-50 mb-10 tracking-wide max-w-2xl drop-shadow-lg">
-            Delivering Emotions, One Petal at a Time. Fresh, Beautiful Arrangements for Every Occasion.
+          {/* Updated Premium Description */}
+          <p
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="text-lg md:text-xl text-pink-100 mb-10 max-w-3xl leading-relaxed"
+          >
+            At Flora Haven, we craft more than just flower arrangements — we deliver heartfelt emotions,
+            unforgettable moments, and timeless beauty.
           </p>
 
-          {/* Shop Now Button */}
+          {/* Button */}
           <Link
             to="/products"
-            className="inline-block bg-pink-500 text-white text-lg font-semibold px-10 py-4 rounded-full shadow-2xl 
-            hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 active:scale-95 
-            focus:outline-none focus:ring-4 focus:ring-pink-300"
+            data-aos="zoom-in"
+            data-aos-delay="400"
+            className="bg-pink-600 text-white px-8 py-3 rounded-full font-semibold shadow-xl 
+            hover:bg-gray-900 cursor-pointer"
           >
             Shop Now
           </Link>
@@ -52,22 +70,19 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Optional fallback */}
-      {!heroImage && (
-        <div className="py-20 text-center bg-white">
-          <p className="text-gray-400 italic">
-            Hero image placeholder - Import your image at the top of the file.
-          </p>
-        </div>
-      )}
+      {/* Sections with AOS */}
+      <div data-aos="fade-up">
+        <Flowers />
+      </div>
 
-      {/* Sections */}
-      <Flowers />
-      <ProductCarousel />
-      <Story />
-      <Testimonials />
-      <Bloom />
+      <div data-aos="fade-up" data-aos-delay="100">
+        <ProductCarousel />
+      </div>
+ <div data-aos="fade-up" data-aos-delay="300">
+        <Testimonials />
+      </div>
 
+      
     </div>
   );
 };
