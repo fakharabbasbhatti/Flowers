@@ -38,6 +38,14 @@ const HomePage = () => {
         {/* Hero Content */}
         <div className="relative z-10 text-center px-6 py-16 md:px-12 lg:px-24 max-w-5xl mx-auto flex flex-col items-center">
 
+          <div data-aos="fade-up" className="flex items-center gap-2 mb-6">
+            <div className="h-px w-10 bg-pink-400"></div>
+            <span className="text-pink-400 uppercase tracking-[0.3em] text-xs font-bold">
+              Home
+            </span>
+            <div className="h-px w-10 bg-pink-400"></div>
+          </div>
+
           {/* Heading */}
           <h1
             data-aos="fade-up"
@@ -61,7 +69,7 @@ const HomePage = () => {
             to="/products"
             data-aos="zoom-in"
             data-aos-delay="400"
-            className="bg-pink-600 text-white px-8 py-3 rounded-full font-semibold shadow-xl 
+            className="bg-pink-600 text-white px-8 py-3 rounded-md font-semibold shadow-xl 
             hover:bg-gray-900 cursor-pointer"
           >
             Shop Now

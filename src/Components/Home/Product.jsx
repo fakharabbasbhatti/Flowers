@@ -130,10 +130,10 @@ const ProductCarousel = () => {
           {products.map((product) => (
             <div key={product.id} className="carousel-cell w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-3">
 
-              <div className="group relative bg-white overflow-hidden shadow-sm border border-gray-100 rounded-xl">
+              <div className="group relative bg-white overflow-hidden shadow-sm border border-gray-100 rounded-md">
 
                 {/* Badge */}
-                <div className="absolute top-3 left-3 z-20 bg-pink-500 text-white text-[10px] font-bold px-3 py-1 rounded-full">
+                <div className="absolute top-3 left-3 z-20 bg-pink-500 text-white text-[10px] font-bold px-3 py-1 rounded-md">
                   New
                 </div>
 
@@ -196,7 +196,7 @@ const ProductCarousel = () => {
       {selectedProduct && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
 
-          <div className="bg-white w-[90%] max-w-md rounded-xl p-6 relative shadow-xl">
+          <div className="bg-white w-[90%] max-w-md rounded-md p-6 relative shadow-xl">
 
             {/* Close */}
             <button
@@ -208,7 +208,7 @@ const ProductCarousel = () => {
 
             <img
               src={selectedProduct.mainImg}
-              className="w-full h-60 object-cover rounded-lg mb-4"
+              className="w-full h-60 object-cover rounded-md mb-4"
             />
 
             <h2 className="text-xl font-bold text-gray-800">

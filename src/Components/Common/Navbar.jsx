@@ -76,19 +76,19 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => setShowSearch(!showSearch)}
-                  className="hover:text-pink-500"
+                  className="hover:text-pink-500 cursor-pointer"
                 >
                   <Search size={22} />
                 </button>
 
                 {showSearch && (
-                  <div className="absolute right-0 top-12 w-[90vw] sm:w-96 bg-white shadow-xl rounded-xl z-50 p-4 border">
+                  <div className="absolute right-0 top-12 w-[90vw] sm:w-96 bg-white shadow-xl rounded-md z-50 p-4 border border-gray-300">
                     <input
                       type="text"
                       placeholder="Search products..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full p-2 border rounded mb-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                      className="w-full p-2 border border-gray-300 rounded-md mb-3 outline-none"
                     />
 
                     {searchQuery && (
@@ -102,7 +102,7 @@ const Navbar = () => {
                                 setShowSearch(false);
                                 setSearchQuery('');
                               }}
-                              className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-lg"
+                              className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md"
                             >
                               <img
                                 src={product.image}
@@ -134,13 +134,13 @@ const Navbar = () => {
                 >
                   <ShoppingCart size={22} />
 
-                  <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">
+                  <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-md">
                     {getTotalItems()}
                   </span>
                 </button>
 
                 {showCart && (
-                  <div className="absolute right-0 top-12 w-[90vw] sm:w-96 bg-white shadow-xl rounded-xl z-50 border">
+                  <div className="absolute right-0 top-12 w-[90vw] sm:w-96 bg-white shadow-xl rounded-md z-50 border border-gray-300">
 
                     {cartItems.length === 0 ? (
                       <div className="p-4 text-center text-gray-500">
@@ -155,7 +155,7 @@ const Navbar = () => {
                               <img
                                 src={item.mainImg}
                                 alt={item.title}
-                                className="w-14 h-14 object-cover rounded"
+                                className="w-14 h-14 object-cover rounded-md"
                               />
 
                               <div className="flex-1">
@@ -170,7 +170,7 @@ const Navbar = () => {
                                     onClick={() =>
                                       updateQuantity(item.id, item.quantity - 1)
                                     }
-                                    className="px-2 bg-gray-200 rounded"
+                                    className="px-2 bg-gray-200 rounded-md"
                                   >−</button>
 
                                   <span>{item.quantity}</span>
@@ -179,7 +179,7 @@ const Navbar = () => {
                                     onClick={() =>
                                       updateQuantity(item.id, item.quantity + 1)
                                     }
-                                    className="px-2 bg-gray-200 rounded"
+                                    className="px-2 bg-gray-200 rounded-md"
                                   >+</button>
                                 </div>
                               </div>
@@ -206,7 +206,7 @@ const Navbar = () => {
                           <Link
                             to="/Addtocart"
                             onClick={() => setShowCart(false)}
-                            className="block mt-3 bg-pink-500 text-white text-center py-2 rounded-lg"
+                            className="block mt-3 bg-pink-500 hover:bg-gray-900 text-white text-center py-2 rounded-md"
                           >
                             View Cart
                           </Link>

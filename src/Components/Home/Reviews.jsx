@@ -67,7 +67,7 @@ const StylishFlowerReviews = () => {
 
         {/* Review Box */}
         <div className="max-w-2xl mx-auto text-center min-h-55">
-          <div className="bg-pink-100 p-8 rounded-lg shadow-xl border border-pink-100 relative">
+          <div className="bg-pink-100 p-8 rounded-md shadow-xl border border-pink-100 relative">
 
             <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-pink-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-3xl font-serif shadow-lg">
               “

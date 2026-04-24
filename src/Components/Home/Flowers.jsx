@@ -30,7 +30,7 @@ const Flowers = () => {
           {flowers.map((flower, index) => (
             <div
               key={flower.id}
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500"
+              className="group relative bg-white rounded-md overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500"
             >
 
               {/* Image */}
@@ -47,7 +47,7 @@ const Flowers = () => {
                   {/* ✅ LINK ADDED HERE */}
                   <Link
                     to="/products"
-                    className="text-white text-sm bg-pink-500 px-4 py-2 rounded-full shadow-lg hover:bg-pink-600 transition"
+                    className="text-white text-sm bg-pink-500 px-4 py-2 rounded-md shadow-lg hover:bg-pink-600 transition"
                   >
                     View Collection
                   </Link>

@@ -34,7 +34,7 @@ const Story = () => {
             <img
               src="https://images.unsplash.com/photo-1559563362-c667ba5f5480?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cm9zZXxlbnwwfHwwfHx8MA%3D%3D"
               alt="flower story"
-              className="w-full h-[420px] object-cover rounded-lg shadow-2xl border border-gray-300"
+              className="w-full h-[420px] object-cover rounded-md shadow-2xl border border-gray-300"
             />
 
             {/* floating decoration */}

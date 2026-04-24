@@ -23,7 +23,7 @@ const Addtocart = () => {
 
                     <Link
                         to="/products"
-                        className="bg-pink-500 text-white px-6 py-3 rounded-lg"
+                        className="bg-pink-500 text-white px-6 py-3 rounded-md"
                     >
                         Continue Shopping
                     </Link>
@@ -46,7 +46,7 @@ const Addtocart = () => {
                     {/* CART TABLE */}
                     <div className="lg:col-span-2">
 
-                        <div className="bg-white shadow rounded-lg overflow-x-auto">
+                        <div className="bg-white shadow rounded-md overflow-x-auto">
 
                             <table className="w-full">
 
@@ -70,7 +70,7 @@ const Addtocart = () => {
                                                 <img
                                                     src={item.mainImg}
                                                     alt={item.title}
-                                                    className="w-14 h-14 rounded object-cover"
+                                                    className="w-14 h-14 rounded-md object-cover"
                                                 />
                                                 <span className="font-medium">
                                                     {item.title}
@@ -90,7 +90,7 @@ const Addtocart = () => {
                                                         onClick={() =>
                                                             updateQuantity(item.id, item.quantity - 1)
                                                         }
-                                                        className="p-1 bg-gray-200 rounded"
+                                                        className="p-1 bg-gray-200 rounded-md"
                                                     >
                                                         <Minus size={16} />
                                                     </button>
@@ -103,7 +103,7 @@ const Addtocart = () => {
                                                         onClick={() =>
                                                             updateQuantity(item.id, item.quantity + 1)
                                                         }
-                                                        className="p-1 bg-gray-200 rounded"
+                                                        className="p-1 bg-gray-200 rounded-md"
                                                     >
                                                         <Plus size={16} />
                                                     </button>
@@ -137,7 +137,7 @@ const Addtocart = () => {
                     </div>
 
                     {/* ORDER SUMMARY */}
-                    <div className="bg-white p-6 rounded-lg shadow h-fit">
+                    <div className="bg-white p-6 rounded-md shadow h-fit">
 
                         <h2 className="text-xl font-bold mb-6">
                             Order Summary
@@ -169,13 +169,13 @@ const Addtocart = () => {
                             </span>
                         </div>
 
-                        <button className="w-full mt-6 bg-pink-500 text-white py-3 rounded-lg">
+                        <button className="w-full mt-6 bg-pink-500 hover:bg-gray-900 text-white py-3 rounded-md cursor-pointer">
                             Proceed to Checkout
                         </button>
 
                         <Link
                             to="/products"
-                            className="block text-center mt-3 bg-gray-100 py-3 rounded-lg"
+                            className="block text-center mt-3 bg-gray-900 hover:bg-pink-500 text-white py-3 rounded-md cursor-pointer"
                         >
                             Continue Shopping
                         </Link>

@@ -58,7 +58,7 @@ const Experience = () => {
               className="
                 bg-white 
                 border border-gray-300 
-                rounded-3xl overflow-hidden 
+                rounded-md overflow-hidden 
                 shadow-sm hover:shadow-2xl 
                 transition-all duration-500 
                 flex flex-col h-full

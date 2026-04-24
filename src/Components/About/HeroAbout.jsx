@@ -64,7 +64,7 @@ const HeroAbout = () => {
         <button
           data-aos="zoom-in"
           data-aos-delay="500"
-          className="bg-pink-600 text-white px-8 py-3 rounded-full font-semibold
+          className="bg-pink-600 text-white px-8 py-3 rounded-md font-semibold
           hover:bg-gray-900 cursor-pointer"
         >
           Explore More
