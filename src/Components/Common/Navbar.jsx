@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Search, Menu, X, Trash2 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import FLORA from '../../assets/lo.png';
@@ -33,19 +33,24 @@ const Navbar = () => {
     { name: 'Contact Us', path: '/contact-us' },
   ];
 
+  // 🔥 Disable scroll when drawer/search/cart open
+  useEffect(() => {
+    document.body.style.overflow =
+      showCart || showSearch || isOpen ? 'hidden' : 'auto';
+  }, [showCart, showSearch, isOpen]);
+
   return (
     <>
       <nav className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-
-          <div className="flex justify-between h-17 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5">
+          <div className="flex justify-between h-16 items-center">
 
             {/* LOGO */}
             <div className="flex items-center">
               <img
                 src={FLORA}
                 alt="Logo"
-                className="h-12 w-auto object-contain rounded-xl"
+                className="h-10 sm:h-12 w-auto object-contain rounded-xl"
               />
             </div>
 
@@ -70,19 +75,23 @@ const Navbar = () => {
             </div>
 
             {/* ICONS */}
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-3 md:gap-5">
 
               {/* SEARCH */}
               <div className="relative">
                 <button
-                  onClick={() => setShowSearch(!showSearch)}
-                  className="hover:text-pink-500 cursor-pointer"
+                  onClick={() => {
+                    setShowSearch(!showSearch);
+                    setShowCart(false);
+                  }}
+                  className="hover:text-pink-500"
                 >
                   <Search size={22} />
                 </button>
 
                 {showSearch && (
-                  <div className="absolute right-0 top-12 w-[90vw] sm:w-96 bg-white shadow-xl rounded-md z-50 p-4 border border-gray-300">
+                  <div className="fixed md:absolute left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 right-auto md:right-0 top-16 md:top-12 w-[95vw] sm:w-96 bg-white shadow-xl rounded-md z-50 p-4 border border-gray-300">
+
                     <input
                       type="text"
                       placeholder="Search products..."
@@ -92,7 +101,7 @@ const Navbar = () => {
                     />
 
                     {searchQuery && (
-                      <div className="max-h-64 overflow-y-auto space-y-2">
+                      <div className="max-h-72 md:max-h-64 overflow-y-auto space-y-2">
                         {filteredProducts.length > 0 ? (
                           filteredProducts.map((product) => (
                             <Link
@@ -129,7 +138,10 @@ const Navbar = () => {
               {/* CART */}
               <div className="relative">
                 <button
-                  onClick={() => setShowCart(!showCart)}
+                  onClick={() => {
+                    setShowCart(!showCart);
+                    setShowSearch(false);
+                  }}
                   className="relative hover:text-pink-500"
                 >
                   <ShoppingCart size={22} />
@@ -140,7 +152,7 @@ const Navbar = () => {
                 </button>
 
                 {showCart && (
-                  <div className="absolute right-0 top-12 w-[90vw] sm:w-96 bg-white shadow-xl rounded-md z-50 border border-gray-300">
+                  <div className="fixed md:absolute left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 right-auto md:right-0 top-16 md:top-12 w-[95vw] sm:w-96 bg-white shadow-xl rounded-md z-50 border border-gray-300">
 
                     {cartItems.length === 0 ? (
                       <div className="p-4 text-center text-gray-500">
@@ -148,7 +160,7 @@ const Navbar = () => {
                       </div>
                     ) : (
                       <>
-                        <div className="max-h-64 overflow-y-auto divide-y">
+                        <div className="max-h-72 md:max-h-64 overflow-y-auto divide-y">
                           {cartItems.map((item) => (
                             <div key={item.id} className="p-3 flex gap-3">
 
@@ -220,7 +232,7 @@ const Navbar = () => {
               {/* MOBILE MENU BUTTON */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden"
+                className="md:hidden p-1"
               >
                 {isOpen ? <X /> : <Menu />}
               </button>
@@ -232,7 +244,7 @@ const Navbar = () => {
 
       {/* OVERLAY */}
       <div
-        className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/40 z-40 transition-all duration-300 ${
           isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={() => setIsOpen(false)}
@@ -240,7 +252,7 @@ const Navbar = () => {
 
       {/* DRAWER MENU */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-[80%] sm:w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -251,12 +263,12 @@ const Navbar = () => {
           </button>
         </div>
 
-        <div className="p-4 space-y-3">
+        <div className="p-4 space-y-4 ">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className="block text-gray-600 hover:text-pink-500 text-sm"
+              className="block text-lg text-gray-600 font-semibold p-3 bg-gray-300 hover:text-white hover:bg-pink-600 text-center rounded-md"
               onClick={() => setIsOpen(false)}
             >
               {link.name}

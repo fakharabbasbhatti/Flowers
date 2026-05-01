@@ -2,9 +2,9 @@ import React from 'react';
 
 const Story = () => {
   return (
-    <div className="bg-gradient-to-b from-gray-100 to-white py-20 px-6">
+    <div className="bg-gradient-to-b from-gray-100 to-white py-20">
 
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-5 flex flex-col lg:flex-row items-center gap-12">
 
         {/* LEFT SIDE TEXT */}
         <div className="flex-1 space-y-6">
@@ -34,7 +34,7 @@ const Story = () => {
             <img
               src="https://images.unsplash.com/photo-1559563362-c667ba5f5480?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cm9zZXxlbnwwfHwwfHx8MA%3D%3D"
               alt="flower story"
-              className="w-full h-[420px] object-cover rounded-md shadow-2xl border border-gray-300"
+              className="w-[450px] h-[450px] object-cover rounded-md shadow-2xl border border-gray-300"
             />
 
             {/* floating decoration */}

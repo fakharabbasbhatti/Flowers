@@ -43,98 +43,151 @@ const Addtocart = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-                    {/* CART TABLE */}
-                    <div className="lg:col-span-2">
+                   {/* CART TABLE (Desktop) */}
+<div className="lg:col-span-2">
 
-                        <div className="bg-white shadow rounded-md overflow-x-auto">
+  <div className="bg-white shadow rounded-md overflow-x-auto">
 
-                            <table className="w-full">
+    {/* DESKTOP TABLE */}
+    <table className="hidden lg:table w-full">
 
-                                <thead className="bg-gray-100">
-                                    <tr>
-                                        <th className="text-left p-4">Product</th>
-                                        <th className="text-left p-4">Price</th>
-                                        <th className="text-left p-4">Qty</th>
-                                        <th className="text-left p-4">Total</th>
-                                        <th className="text-left p-4">Action</th>
-                                    </tr>
-                                </thead>
+      <thead className="bg-gray-100">
+        <tr>
+          <th className="text-left p-4">Product</th>
+          <th className="text-left p-4">Price</th>
+          <th className="text-left p-4">Qty</th>
+          <th className="text-left p-4">Total</th>
+          <th className="text-left p-4">Action</th>
+        </tr>
+      </thead>
 
-                                <tbody>
+      <tbody>
+        {cartItems.map((item) => (
+          <tr key={item.id} className="border-t">
 
-                                    {cartItems.map((item) => (
-                                        <tr key={item.id} className="border-t">
+            {/* PRODUCT */}
+            <td className="p-4 flex items-center gap-3">
+              <img
+                src={item.mainImg}
+                alt={item.title}
+                className="w-14 h-14 rounded-md object-cover"
+              />
+              <span className="font-medium">{item.title}</span>
+            </td>
 
-                                            {/* PRODUCT */}
-                                            <td className="p-4 flex items-center gap-3">
-                                                <img
-                                                    src={item.mainImg}
-                                                    alt={item.title}
-                                                    className="w-14 h-14 rounded-md object-cover"
-                                                />
-                                                <span className="font-medium">
-                                                    {item.title}
-                                                </span>
-                                            </td>
+            <td className="p-4 text-pink-600 font-semibold">
+              Rs. {item.price.toLocaleString()}
+            </td>
 
-                                            {/* PRICE */}
-                                            <td className="p-4 text-pink-600 font-semibold">
-                                                Rs. {item.price.toLocaleString()}
-                                            </td>
+            <td className="p-4">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  className="p-1 bg-gray-200 rounded-md"
+                >
+                  <Minus size={16} />
+                </button>
 
-                                            {/* QTY */}
-                                            <td className="p-4">
-                                                <div className="flex items-center gap-2">
+                <span className="px-2">{item.quantity}</span>
 
-                                                    <button
-                                                        onClick={() =>
-                                                            updateQuantity(item.id, item.quantity - 1)
-                                                        }
-                                                        className="p-1 bg-gray-200 rounded-md"
-                                                    >
-                                                        <Minus size={16} />
-                                                    </button>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  className="p-1 bg-gray-200 rounded-md"
+                >
+                  <Plus size={16} />
+                </button>
+              </div>
+            </td>
 
-                                                    <span className="px-2">
-                                                        {item.quantity}
-                                                    </span>
+            <td className="p-4 font-bold">
+              Rs. {(item.price * item.quantity).toLocaleString()}
+            </td>
 
-                                                    <button
-                                                        onClick={() =>
-                                                            updateQuantity(item.id, item.quantity + 1)
-                                                        }
-                                                        className="p-1 bg-gray-200 rounded-md"
-                                                    >
-                                                        <Plus size={16} />
-                                                    </button>
+            <td className="p-4">
+              <button
+                onClick={() => removeFromCart(item.id)}
+                className="text-red-500"
+              >
+                <Trash2 />
+              </button>
+            </td>
 
-                                                </div>
-                                            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
 
-                                            {/* TOTAL */}
-                                            <td className="p-4 font-bold">
-                                                Rs. {(item.price * item.quantity).toLocaleString()}
-                                            </td>
+    {/* MOBILE CARDS */}
+    <div className="lg:hidden space-y-4 p-4">
 
-                                            {/* REMOVE */}
-                                            <td className="p-4">
-                                                <button
-                                                    onClick={() => removeFromCart(item.id)}
-                                                    className="text-red-500"
-                                                >
-                                                    <Trash2 />
-                                                </button>
-                                            </td>
+      {cartItems.map((item) => (
+        <div
+          key={item.id}
+          className="border rounded-md p-4 flex gap-3"
+        >
 
-                                        </tr>
-                                    ))}
+          <img
+            src={item.mainImg}
+            alt={item.title}
+            className="w-16 h-16 rounded-md object-cover"
+          />
 
-                                </tbody>
+          <div className="flex-1">
 
-                            </table>
+            <h3 className="font-medium">{item.title}</h3>
 
-                        </div>
-                    </div>
+            <p className="text-pink-600 font-semibold">
+              Rs. {item.price.toLocaleString()}
+            </p>
+
+            <p className="text-sm font-bold">
+              Total: Rs. {(item.price * item.quantity).toLocaleString()}
+            </p>
+
+            {/* QTY + REMOVE */}
+            <div className="flex items-center justify-between mt-2">
+
+              <div className="flex items-center gap-2">
+
+                <button
+                  onClick={() =>
+                    updateQuantity(item.id, item.quantity - 1)
+                  }
+                  className="p-1 bg-gray-200 rounded-md"
+                >
+                  <Minus size={16} />
+                </button>
+
+                <span>{item.quantity}</span>
+
+                <button
+                  onClick={() =>
+                    updateQuantity(item.id, item.quantity + 1)
+                  }
+                  className="p-1 bg-gray-200 rounded-md"
+                >
+                  <Plus size={16} />
+                </button>
+
+              </div>
+
+              <button
+                onClick={() => removeFromCart(item.id)}
+                className="text-red-500"
+              >
+                <Trash2 size={18} />
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+</div>
 
                     {/* ORDER SUMMARY */}
                     <div className="bg-white p-6 rounded-md shadow h-fit">

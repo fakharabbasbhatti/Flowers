@@ -35,7 +35,7 @@ const StylishFlowerReviews = () => {
 
   return (
     <section className="py-20 bg-linear-to-b from-white to-pink-50 overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="max-w-5xl mx-auto px-4 sm:px-5">
 
         {/* TITLE */}
         <h2 className="text-4xl font-serif font-bold text-center text-gray-800 mb-2">

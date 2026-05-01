@@ -114,7 +114,7 @@ const Blogs = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
 
-        <div className="relative z-10 text-center px-6 py-16 md:px-12 lg:px-24 max-w-5xl mx-auto flex flex-col items-center">
+        <div className="relative z-10 text-center py-16 max-w-7xl mx-auto px-4 sm:px-5 flex flex-col items-center">
           
           <div data-aos="fade-up" className="flex items-center gap-2 mb-6">
             <div className="h-px w-10 bg-pink-400"></div>
@@ -151,10 +151,10 @@ const Blogs = () => {
       </section>
 
       {/* BLOG SECTION */}
-      <section className="py-20 px-6 relative">
+      <section className="py-10 relative">
 
         <div
-          className={`max-w-7xl mx-auto transition-all duration-500 ${
+          className={`max-w-7xl mx-auto px-4 sm:px-5 transition-all duration-500 ${
             selectedBlog ? 'blur-md scale-[0.98] pointer-events-none' : ''
           }`}
         >
@@ -218,56 +218,61 @@ const Blogs = () => {
 
         {/* MODAL */}
         {selectedBlog && (
-          <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div
-              className="absolute inset-0 bg-black/60"
-              onClick={() => setSelectedBlog(null)}
-            />
+         <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+  <div
+    className="absolute inset-0 bg-black/60"
+    onClick={() => setSelectedBlog(null)}
+  />
 
-            <div className="relative bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-md shadow-2xl flex flex-col md:flex-row">
-              
-              <button
-                onClick={() => setSelectedBlog(null)}
-                className="absolute top-5 right-5 bg-white p-2 rounded-full shadow hover:bg-pink-600 hover:text-white z-10 cursor-pointer"
-              >
-                <X size={20} />
-              </button>
+  <div className="relative bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-md shadow-2xl flex flex-col md:flex-row">
 
-              <div className="md:w-1/2 h-72 md:h-auto">
-                <img
-                  src={selectedBlog.image}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+    {/* Close Button */}
+    <button
+      onClick={() => setSelectedBlog(null)}
+      className="absolute top-3 right-3 md:top-5 md:right-5 bg-white p-2 rounded-md shadow hover:bg-pink-600 hover:text-white z-10 cursor-pointer"
+    >
+      <X size={20} />
+    </button>
 
-              <div className="md:w-1/2 p-8 space-y-5">
-                <p className="text-pink-600 text-xs font-bold uppercase">
-                  {selectedBlog.category} • {selectedBlog.date}
-                </p>
+    {/* Image */}
+    <div className="w-full md:w-1/2 h-56 sm:h-64 md:h-auto">
+      <img
+        src={selectedBlog.image}
+        className="w-full h-full object-cover"
+        alt="blog"
+      />
+    </div>
 
-                <h2 className="text-2xl font-bold text-gray-900">
-                  {selectedBlog.title}
-                </h2>
+    {/* Content */}
+    <div className="w-full md:w-1/2 p-4 sm:p-6 md:p-8 space-y-4 md:space-y-5">
 
-                <div className="w-16 h-1 bg-pink-500 rounded-full"></div>
+      <p className="text-pink-600 text-xs font-bold uppercase">
+        {selectedBlog.category} • {selectedBlog.date}
+      </p>
 
-                <p className="text-gray-600 italic">
-                  "{selectedBlog.excerpt}"
-                </p>
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+        {selectedBlog.title}
+      </h2>
 
-                <p className="text-gray-700 leading-relaxed">
-                  {selectedBlog.content}
-                </p>
+      <div className="w-14 sm:w-16 h-1 bg-pink-500 rounded-full"></div>
 
-                <button
-                  onClick={() => setSelectedBlog(null)}
-                  className="bg-pink-600 text-white px-8 py-3 rounded-md hover:bg-gray-900 transition cursor-pointer"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
+      <p className="text-gray-600 italic text-sm sm:text-base">
+        "{selectedBlog.excerpt}"
+      </p>
+
+      <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+        {selectedBlog.content}
+      </p>
+
+      <button
+        onClick={() => setSelectedBlog(null)}
+        className="w-full sm:w-auto bg-pink-600 text-white px-6 sm:px-8 py-3 rounded-md hover:bg-gray-900 transition cursor-pointer"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
         )}
       </section>
     </>

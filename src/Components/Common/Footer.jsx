@@ -28,9 +28,9 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-gray-300 pt-16 pb-8 px-4 border-t border-pink-500/30">
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-gray-300 pt-16 pb-8 border-t border-pink-500/30">
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-5 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 
         {/* Quick Links */}
         <div>
@@ -69,12 +69,12 @@ const Footer = () => {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-gray-800 border border-gray-700 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-pink-500"
+              className="bg-gray-800 border border-gray-700 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-pink-500"
             />
 
             <button
               onClick={handleSubscribe}
-              className="bg-pink-500 hover:bg-pink-600 transition rounded-full py-2 text-sm font-semibold cursor-pointer"
+              className="bg-pink-500 hover:bg-pink-600 transition rounded-md py-2 text-sm font-semibold cursor-pointer"
             >
               Subscribe
             </button>
@@ -82,23 +82,23 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex gap-3">
-            <a href="https://wa.me/923229234045" target="_blank" rel="noreferrer" className="p-2.5 rounded-full hover:bg-green-500 border border-gray-700">
+            <a href="https://wa.me/923229234045" target="_blank" rel="noreferrer" className="p-2.5 rounded-md hover:bg-green-500 border border-gray-700">
               <FaWhatsapp />
             </a>
 
-            <a href="https://www.linkedin.com/in/fakhar-abbas-bhatti" target="_blank" rel="noreferrer" className="p-2.5 rounded-full hover:bg-blue-500 border border-gray-700">
+            <a href="https://www.linkedin.com/in/fakhar-abbas-bhatti" target="_blank" rel="noreferrer" className="p-2.5 rounded-md hover:bg-blue-500 border border-gray-700">
               <FaLinkedinIn />
             </a>
 
-            <a href="https://github.com/fakharabbasbhatti" target="_blank" rel="noreferrer" className="p-2.5 rounded-full hover:bg-gray-700 border border-gray-700">
+            <a href="https://github.com/fakharabbasbhatti" target="_blank" rel="noreferrer" className="p-2.5 rounded-md hover:bg-gray-700 border border-gray-700">
               <FaGithub />
             </a>
 
-            <a href="https://www.fiverr.com/" target="_blank" rel="noreferrer" className="p-2.5 rounded-full hover:bg-green-600 border border-gray-700">
+            <a href="https://www.fiverr.com/fakharabbas333/buying?source=avatar_menu_profile" target="_blank" rel="noreferrer" className="p-2.5 rounded-md hover:bg-green-600 border border-gray-700">
               <TbBrandFiverr />
             </a>
 
-            <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer" className="p-2.5 rounded-full hover:bg-black border border-gray-700">
+            <a href="https://www.tiktok.com/@fakharbhatti333/" target="_blank" rel="noreferrer" className="p-2.5 rounded-md hover:bg-gray-700 border border-gray-700">
               <AiOutlineTikTok />
             </a>
           </div>

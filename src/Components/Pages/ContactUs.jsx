@@ -40,7 +40,7 @@ const ContactUs = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
 
-        <div className="relative z-10 text-center px-6 py-16 md:px-12 lg:px-24 max-w-5xl mx-auto flex flex-col items-center">
+        <div className="relative z-10 text-center py-16 max-w-7xl mx-auto px-4 sm:px-5 flex flex-col items-center">
 
           <div data-aos="fade-up" className="flex items-center gap-2 mb-6">
             <div className="h-px w-10 bg-pink-400"></div>
@@ -77,7 +77,7 @@ const ContactUs = () => {
       </section>
 
       {/* ✅ EXISTING CONTACT SECTION */}
-      <section className="py-16 px-6 bg-white max-w-7xl mx-auto">
+      <section className="py-10 max-w-7xl mx-auto px-4 sm:px-5">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 

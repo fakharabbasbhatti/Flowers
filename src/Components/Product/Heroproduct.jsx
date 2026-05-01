@@ -79,7 +79,7 @@ const Heroproduct = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
 
         {/* Content */}
-        <div className="relative z-10 text-center px-6 py-16 md:px-12 lg:px-24 max-w-5xl mx-auto flex flex-col items-center">
+        <div className="relative z-10 text-center py-16 max-w-7xl mx-auto px-4 sm:px-5 flex flex-col items-center">
 
           <div data-aos="fade-up" className="flex items-center gap-2 mb-6">
             <div className="h-px w-10 bg-pink-400"></div>
@@ -117,8 +117,8 @@ const Heroproduct = () => {
       </section>
 
       {/* ✅ MAIN SHOP SECTION */}
-      <div className="min-h-screen bg-white mt-5 text-gray-800 p-4 md:p-10">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10">
+      <div className="min-h-screen bg-white mt-10 text-gray-800 py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 flex flex-col lg:flex-row gap-10">
 
           {/* Sidebar */}
           <aside className="w-full lg:w-64 space-y-8">

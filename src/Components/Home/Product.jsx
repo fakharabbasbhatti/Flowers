@@ -97,7 +97,7 @@ const ProductCarousel = () => {
   return (
     <section className="py-16 bg-gray-50 relative">
 
-      <div className="max-w-7xl mx-auto px-4 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-5 relative">
 
         {/* Heading */}
         <div className="text-center mb-16">

@@ -70,7 +70,7 @@ const Outlets = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
 
-        <div className="relative z-10 text-center px-6 py-16 md:px-12 lg:px-24 max-w-5xl mx-auto flex flex-col items-center">
+        <div className="relative z-10 text-center py-16 max-w-7xl mx-auto px-4 sm:px-5 flex flex-col items-center">
 
           <div data-aos="fade-up" className="flex items-center gap-2 mb-6">
             <div className="h-px w-10 bg-pink-400"></div>
@@ -102,13 +102,13 @@ const Outlets = () => {
             data-aos-delay="500"
             className="bg-pink-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-gray-900 cursor-pointer"
           >
-            Explore Locations
+            Contact Us
           </button>
         </div>
       </section>
 
       {/* OUTLETS SECTION */}
-      <section className="py-16 px-6 bg-white max-w-7xl mx-auto">
+      <section className="max-w-7xl mx-auto px-4 sm:px-5 mt-10 mb-10">
 
         <div className="text-center mb-12">
           <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
@@ -163,23 +163,24 @@ const Outlets = () => {
 
         {/* MODAL */}
         {selectedOutlet && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
 
             <div
               className="absolute inset-0 bg-black/70"
               onClick={() => setSelectedOutlet(null)}
             />
 
-            <div className="relative bg-white w-full max-w-5xl rounded-md flex overflow-hidden">
+            <div className="relative bg-white w-full max-w-5xl rounded-md flex flex-col md:flex-row overflow-hidden max-h-[90vh] overflow-y-auto">
 
               <button
                 onClick={() => setSelectedOutlet(null)}
-                className="absolute top-3 right-3 bg-white p-2 rounded-md cursor-pointer shadow"
+                className="absolute top-3 right-3 bg-white p-2 rounded-md cursor-pointer shadow z-10"
               >
                 <X />
               </button>
 
-              <div className="w-1/2">
+              {/* Image */}
+              <div className="w-full md:w-1/2 h-64 md:h-auto">
                 <img
                   src={selectedOutlet.image}
                   className="w-full h-full object-cover"
@@ -187,9 +188,10 @@ const Outlets = () => {
                 />
               </div>
 
-              <div className="w-1/2 p-10 space-y-5">
+              {/* Content */}
+              <div className="w-full md:w-1/2 p-5 md:p-10 space-y-5">
 
-                <h2 className="text-3xl font-bold">
+                <h2 className="text-2xl md:text-3xl font-bold">
                   {selectedOutlet.city}
                 </h2>
 
